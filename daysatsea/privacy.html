@@ -3,33 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Privacy Policy for Days at Sea — the app collects and transmits nothing; everything stays on your device.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%93%3C/text%3E%3C/svg%3E">
 <title>Privacy Policy — Days at Sea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #1a1a1a; }
-  h1 { font-size: 1.6em; }
-  footer { margin-top: 40px; font-size: 0.85em; color: #666; }
+  :root {
+    --ocean-deep: #042C53; --ocean-mid: #185FA5; --brass: #854F0B; --kelp: #085041;
+    --paper: #F5F4EF; --card: #FFFFFF; --ink: #1A1A18; --ink2: #6B6A65;
+    --border: rgba(4,44,83,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161614; --card: #1E1E1C; --ink: #F0EFE9; --ink2: #9B9A95;
+      --ocean-mid: #6FA8E0; --brass: #D99A3D; --kelp: #35C89B;
+      --border: rgba(240,239,233,0.14);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px; line-height: 1.65;
+  }
+  h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; text-wrap: balance; }
+  a { color: var(--ocean-mid); }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px 60px; }
+  nav.doc-nav {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    padding: 22px 0; margin-bottom: 20px; border-bottom: 1px solid var(--border);
+    font-size: 0.92em;
+  }
+  nav.doc-nav a { color: var(--ink2); text-decoration: none; }
+  nav.doc-nav a:hover, nav.doc-nav a.current { color: var(--ocean-mid); }
+  h1 { font-size: 1.7em; margin: 0 0 4px; }
+  .updated { color: var(--ink2); font-size: 0.9em; margin-bottom: 28px; }
+  ul { padding-left: 1.3em; }
+  li { margin-bottom: 6px; }
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.85em; color: var(--ink2); }
 </style>
 </head>
 <body>
-<h1>Privacy Policy</h1>
-<p><strong>Last updated: August 21, 2026</strong></p>
+<div class="wrap">
+  <nav class="doc-nav">
+    <a href="./">Days at Sea</a>
+    <a href="privacy.html" class="current">Privacy</a>
+    <a href="support.html">Support</a>
+    <a href="eula.html">EULA</a>
+  </nav>
 
-<p>Days at Sea does not collect, transmit, or share any personal data.</p>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: September 30, 2026</p>
 
-<ul>
-  <li>All information you enter (contract details, rotation schedule, sea time logs, pay data) is stored locally on your device only, using your browser/app's local storage.</li>
-  <li>The app makes no network connections and has no backend server.</li>
-  <li>No analytics, advertising, or tracking SDKs are included.</li>
-  <li>No account or sign-in is required or offered.</li>
-</ul>
+  <p>Days at Sea does not collect, transmit, or share any personal data.</p>
 
-<p>If you use the app's "Export backup" feature, the resulting file is created and shared entirely by you (for example via AirDrop, Files, Mail, or Messages). The developer has no access to that file or its contents.</p>
+  <ul>
+    <li>All information you enter (contract details, rotation schedule, sea time logs, pay data) is stored locally on your device only, using your browser/app's local storage.</li>
+    <li>The app makes no network connections and has no backend server.</li>
+    <li>No analytics, advertising, or tracking SDKs are included.</li>
+    <li>No account or sign-in is required or offered.</li>
+  </ul>
 
-<p>Because nothing is collected, there is nothing to sell, share with third parties, or retain — uninstalling the app removes all local data.</p>
+  <p>If you use the app's "Export backup" feature, the resulting file is created and shared entirely by you (for example via AirDrop, Files, Mail, or Messages). The developer has no access to that file or its contents.</p>
 
-<h2>Contact</h2>
-<p>Questions about this policy: <a href="mailto:support@seatimetracking.com">support@seatimetracking.com</a></p>
+  <p>Because nothing is collected, there is nothing to sell, share with third parties, or retain — uninstalling the app removes all local data.</p>
 
-<footer>Days at Sea, by Freeboard</footer>
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:support@seatimetracking.com">support@seatimetracking.com</a></p>
+
+  <footer>Days at Sea, by Freeboard</footer>
+</div>
 </body>
 </html>

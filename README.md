@@ -16,10 +16,12 @@ Umbrella website for seafarer-focused apps, published with GitHub Pages at [free
 | Days at Sea landing page | [freeboard.boats/daysatsea](https://freeboard.boats/daysatsea/) |
 | Days at Sea Privacy Policy | [freeboard.boats/daysatsea/privacy.html](https://freeboard.boats/daysatsea/privacy.html) |
 | Days at Sea Support | [freeboard.boats/daysatsea/support.html](https://freeboard.boats/daysatsea/support.html) |
+| Days at Sea EULA | [freeboard.boats/daysatsea/eula.html](https://freeboard.boats/daysatsea/eula.html) |
+| 404 page | [freeboard.boats/anything](https://freeboard.boats/this-page-does-not-exist) |
 
 ## Stack
 
-Static HTML/CSS, no build step, no dependencies. Hosted on GitHub Pages with a custom domain (see `CNAME`). New apps get a new top-level folder (e.g. `/nextapp/`) with their own `index.html`, `privacy.html`, and `support.html`, then get linked from the root landing page.
+Static HTML/CSS, no build step, no dependencies. Hosted on GitHub Pages with a custom domain (see `CNAME`). New apps get a new top-level folder (e.g. `/nextapp/`) with their own `index.html`, `privacy.html`, `support.html`, and `eula.html`, then get linked from the root landing page.
 
 ## Local preview
 
