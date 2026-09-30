@@ -4,7 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Freeboard — small, offline-first apps for people who work at sea.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%93%3C/text%3E%3C/svg%3E">
 <title>Freeboard</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Freeboard">
+<meta property="og:description" content="Small, offline-first apps for people who work at sea.">
+<meta property="og:url" content="https://freeboard.boats/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Freeboard">
+<meta name="twitter:description" content="Small, offline-first apps for people who work at sea.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -97,6 +107,10 @@
     font-size: 0.9em;
     color: var(--ink2);
   }
+  .foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .foot-links { display: flex; gap: 20px; }
+  .foot-links a { color: var(--ink2); text-decoration: none; }
+  .foot-links a:hover { color: var(--ocean-mid); }
 </style>
 </head>
 <body>
@@ -130,8 +144,11 @@
 </div>
 
 <footer>
-  <div class="wrap">
-    © 2026 Freeboard
+  <div class="wrap foot-row">
+    <div>© 2026 Freeboard</div>
+    <div class="foot-links">
+      <a href="mailto:support@seatimetracking.com">Contact</a>
+    </div>
   </div>
 </footer>
 
