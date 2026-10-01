@@ -60,14 +60,54 @@
   .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
 
   .hero {
+    position: relative;
     background: var(--ocean-deep);
     background-image: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(24,95,165,0.55), transparent 65%);
     color: #F5F4EF;
-    padding: 64px 0 72px;
+    padding: 64px 0 96px;
+    overflow: hidden;
   }
-  .brand-mark { font-size: 0.8em; letter-spacing: 0.14em; text-transform: uppercase; color: #E3AE5E; font-weight: 600; }
-  .hero h1 { font-size: clamp(2.2em, 6vw, 3.2em); margin-top: 0.35em; line-height: 1.08; }
-  .hero p.lede { font-size: 1.1em; max-width: 30em; color: rgba(245,244,239,0.86); margin-top: 0.6em; }
+  .brand-mark { position: relative; z-index: 2; font-size: 0.8em; letter-spacing: 0.14em; text-transform: uppercase; color: #E3AE5E; font-weight: 600; }
+  .hero h1 { position: relative; z-index: 2; font-size: clamp(2.2em, 6vw, 3.2em); margin-top: 0.35em; line-height: 1.08; }
+  .hero p.lede { position: relative; z-index: 2; font-size: 1.1em; max-width: 30em; color: rgba(245,244,239,0.86); margin-top: 0.6em; }
+
+  /* ---- decorative sprites ---- */
+  .sprite-boat {
+    position: absolute;
+    right: 6%;
+    top: 18%;
+    width: 150px;
+    opacity: 0.22;
+    z-index: 1;
+    animation: bob 7s ease-in-out infinite;
+  }
+  .sprite-gull {
+    position: absolute;
+    opacity: 0.4;
+    z-index: 1;
+  }
+  .sprite-gull.g1 { width: 30px; right: 22%; top: 12%; animation: drift 14s linear infinite; }
+  .sprite-gull.g2 { width: 22px; right: 10%; top: 24%; animation: drift 18s linear infinite 3s; }
+  @media (max-width: 640px) { .sprite-boat, .sprite-gull { display: none; } }
+  .hero-waves {
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    line-height: 0;
+    z-index: 1;
+  }
+  .hero-waves svg { display: block; width: 100%; height: 56px; }
+  @media (prefers-reduced-motion: reduce) {
+    .sprite-boat, .sprite-gull { animation: none; }
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+  }
+  @keyframes drift {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(18px); }
+    100% { transform: translateX(0); }
+  }
 
   section { padding: 56px 0; }
   .section-head { max-width: 34em; margin-bottom: 32px; }
@@ -116,10 +156,31 @@
 <body>
 
 <div class="hero">
+  <svg class="sprite-gull g1" viewBox="0 0 40 20" fill="none" aria-hidden="true">
+    <path d="M2 14C7 8 13 8 20 14C27 8 33 8 38 14" stroke="#F5F4EF" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+  <svg class="sprite-gull g2" viewBox="0 0 40 20" fill="none" aria-hidden="true">
+    <path d="M2 14C7 8 13 8 20 14C27 8 33 8 38 14" stroke="#F5F4EF" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="sprite-boat" viewBox="0 0 160 140" fill="none" aria-hidden="true">
+    <path d="M80 8 L80 78" stroke="#F5F4EF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M80 12 L124 70 L80 70 Z" fill="#E3AE5E"/>
+    <path d="M80 26 L48 70 L80 70 Z" fill="#F5F4EF" fill-opacity="0.85"/>
+    <path d="M18 92 C40 112 120 112 142 92 L128 118 C104 130 56 130 32 118 Z" fill="#F5F4EF"/>
+    <path d="M10 94 C45 86 115 86 150 94" stroke="#F5F4EF" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
   <div class="wrap">
     <div class="brand-mark">⚓ Freeboard</div>
     <h1>Small tools for people who work at sea.</h1>
     <p class="lede">Offline-first apps for seafarers — no accounts, no ads, nothing leaves your device unless you send it yourself.</p>
+  </div>
+
+  <div class="hero-waves" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"/>
+    </svg>
   </div>
 </div>
 
