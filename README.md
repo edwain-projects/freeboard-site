@@ -7,7 +7,7 @@ Umbrella website for seafarer-focused apps, published with GitHub Pages at [free
 | App | Path | Description |
 |---|---|---|
 | Days at Sea | [/daysatsea](https://freeboard.boats/daysatsea/) | iOS app tracking rotation, contract, and sea time. Fully offline — no accounts, no ads, no tracking. |
-| Yard | [/yard](https://freeboard.boats/yard/) | iOS + Android job diary and Gantt chart for refits and shipyard periods (name not final). Offline, no accounts. Support: support@freeboard.boats. |
+| Days in Dock | [/daysindock](https://freeboard.boats/daysindock/) | iOS + Android job diary and Gantt chart for refits and shipyard periods. Offline, no accounts. Support: support@freeboard.boats. |
 
 ## Pages
 
@@ -18,10 +18,10 @@ Umbrella website for seafarer-focused apps, published with GitHub Pages at [free
 | Days at Sea Privacy Policy | [freeboard.boats/daysatsea/privacy.html](https://freeboard.boats/daysatsea/privacy.html) |
 | Days at Sea Support | [freeboard.boats/daysatsea/support.html](https://freeboard.boats/daysatsea/support.html) |
 | Days at Sea EULA | [freeboard.boats/daysatsea/eula.html](https://freeboard.boats/daysatsea/eula.html) |
-| Yard landing page | [freeboard.boats/yard](https://freeboard.boats/yard/) |
-| Yard Privacy Policy | [freeboard.boats/yard/privacy.html](https://freeboard.boats/yard/privacy.html) |
-| Yard Support | [freeboard.boats/yard/support.html](https://freeboard.boats/yard/support.html) |
-| Yard EULA | [freeboard.boats/yard/eula.html](https://freeboard.boats/yard/eula.html) |
+| Days in Dock landing page | [freeboard.boats/daysindock](https://freeboard.boats/daysindock/) |
+| Days in Dock Privacy Policy | [freeboard.boats/daysindock/privacy.html](https://freeboard.boats/daysindock/privacy.html) |
+| Days in Dock Support | [freeboard.boats/daysindock/support.html](https://freeboard.boats/daysindock/support.html) |
+| Days in Dock EULA | [freeboard.boats/daysindock/eula.html](https://freeboard.boats/daysindock/eula.html) |
 | 404 page | [freeboard.boats/anything](https://freeboard.boats/this-page-does-not-exist) |
 
 ## Stack
