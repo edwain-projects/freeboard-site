@@ -8,7 +8,7 @@ Umbrella website for seafarer-focused apps, published with GitHub Pages at [free
 |---|---|---|
 | Days at Sea | [/daysatsea](https://freeboard.boats/daysatsea/) | iOS app tracking rotation, contract, and sea time. Fully offline — no accounts, no ads, no tracking. |
 | Days in Dock | [/daysindock](https://freeboard.boats/daysindock/) | iOS + Android job diary and Gantt chart for refits and shipyard periods. Offline, no accounts. Support: support@freeboard.boats. |
-| Days in Dock Desktop Version | [/daysindock/desktop](https://freeboard.boats/daysindock/desktop/) | Windows (macOS and Linux to follow) job tracker and Gantt chart for shipyard periods. Runs on the computer, no internet. Separate from the phone app (no sync). Download not published yet; no price or version number on the pages. Support: support@freeboard.boats. |
+| Days in Dock Desktop Version | [/daysindock/desktop](https://freeboard.boats/daysindock/desktop/) | Windows (macOS and Linux to follow) job tracker and Gantt chart for shipyard periods. Runs on the computer, no internet. Separate from the phone app (no sync). No download link, price or version number on the pages (readers are assumed to know where the app is). Support: support@freeboard.boats. |
 
 ## Pages
 
