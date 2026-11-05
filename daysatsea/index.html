@@ -196,11 +196,16 @@
     .rotation-demo { animation-delay: 0.16s; }
   }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .backbar { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; padding: 14px 24px 0; font-size: 0.85em; }
+  .backbar a { color: rgba(245,244,239,0.72); text-decoration: none; }
+  .backbar a:hover { color: #fff; text-decoration: underline; }
+  .topbar { padding-top: 10px !important; }
 </style>
 </head>
 <body>
 
 <div class="hero">
+  <div class="backbar"><a href="../">← Freeboard</a></div>
   <div class="topbar">
     <div class="brand">⚓ Days at Sea</div>
     <nav class="toplinks">
