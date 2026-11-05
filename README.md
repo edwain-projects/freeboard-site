@@ -8,6 +8,7 @@ Umbrella website for seafarer-focused apps, published with GitHub Pages at [free
 |---|---|---|
 | Days at Sea | [/daysatsea](https://freeboard.boats/daysatsea/) | iOS app tracking rotation, contract, and sea time. Fully offline — no accounts, no ads, no tracking. |
 | Days in Dock | [/daysindock](https://freeboard.boats/daysindock/) | iOS + Android job diary and Gantt chart for refits and shipyard periods. Offline, no accounts. Support: support@freeboard.boats. |
+| Days in Dock Desktop Version | [/daysindock/desktop](https://freeboard.boats/daysindock/desktop/) | Windows (macOS and Linux to follow) job tracker and Gantt chart for shipyard periods. Runs on the computer, no internet. Separate from the phone app (no sync). Download not published yet; no price or version number on the pages. Support: support@freeboard.boats. |
 
 ## Pages
 
@@ -22,6 +23,10 @@ Umbrella website for seafarer-focused apps, published with GitHub Pages at [free
 | Days in Dock Privacy Policy | [freeboard.boats/daysindock/privacy.html](https://freeboard.boats/daysindock/privacy.html) |
 | Days in Dock Support | [freeboard.boats/daysindock/support.html](https://freeboard.boats/daysindock/support.html) |
 | Days in Dock EULA | [freeboard.boats/daysindock/eula.html](https://freeboard.boats/daysindock/eula.html) |
+| Days in Dock Desktop Version landing page | [freeboard.boats/daysindock/desktop/](https://freeboard.boats/daysindock/desktop/) |
+| Days in Dock Desktop Version Privacy Policy | [freeboard.boats/daysindock/desktop/privacy.html](https://freeboard.boats/daysindock/desktop/privacy.html) |
+| Days in Dock Desktop Version Support | [freeboard.boats/daysindock/desktop/support.html](https://freeboard.boats/daysindock/desktop/support.html) |
+| Days in Dock Desktop Version EULA | [freeboard.boats/daysindock/desktop/eula.html](https://freeboard.boats/daysindock/desktop/eula.html) |
 | 404 page | [freeboard.boats/anything](https://freeboard.boats/this-page-does-not-exist) |
 
 ## Stack

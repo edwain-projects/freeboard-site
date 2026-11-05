@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Days in Dock Desktop Version — a job tracker and Gantt chart for shipyard periods and refits, on your computer. Jobs, notes, photos, links between jobs, PDF reports and backups. Works with no internet. For Windows, macOS and Linux.">
+<link rel="icon" href="../icon.png">
+<title>Days in Dock Desktop Version</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Days in Dock Desktop Version">
+<meta property="og:description" content="The job tracker and Gantt chart for shipyard periods — on your computer, no internet needed.">
+<meta property="og:url" content="https://freeboard.boats/daysindock/desktop/">
+<meta property="og:image" content="https://freeboard.boats/daysindock/desktop/shots/social.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Days in Dock Desktop Version">
+<meta name="twitter:description" content="The job tracker and Gantt chart for shipyard periods — on your computer, no internet needed.">
+<meta name="twitter:image" content="https://freeboard.boats/daysindock/desktop/shots/social.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean-deep: #042C53;
+    --ocean-mid: #185FA5;
+    --brass: #854F0B;
+    --kelp: #085041;
+    --paper: #F5F4EF;
+    --paper2: #EDECEA;
+    --card: #FFFFFF;
+    --ink: #1A1A18;
+    --ink2: #6B6A65;
+    --border: rgba(4,44,83,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161614;
+      --paper2: #1E1E1C;
+      --card: #1E1E1C;
+      --ink: #F0EFE9;
+      --ink2: #9B9A95;
+      --ocean-mid: #6FA8E0;
+      --brass: #D99A3D;
+      --kelp: #35C89B;
+      --border: rgba(240,239,233,0.14);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-weight: 600; text-wrap: balance; margin: 0; }
+  a { color: var(--ocean-mid); }
+  a:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  img { max-width: 100%; }
+
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  .wide { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- top bar ---- */
+  .backbar { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; padding: 14px 24px 0; font-size: 0.85em; }
+  .backbar a { color: rgba(245,244,239,0.72); text-decoration: none; }
+  .backbar a:hover { color: #fff; text-decoration: underline; }
+  .topbar { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px 24px 22px; max-width: 1080px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: "Fraunces", serif; font-weight: 600; font-size: 1.05em; color: #F5F4EF; white-space: nowrap; }
+  .brand img { width: 30px; height: 30px; border-radius: 7px; }
+  .brand .ed { font-family: "Public Sans", sans-serif; font-weight: 500; font-size: 0.78em; color: #E3AE5E; }
+  @media (max-width: 480px) { .brand .ed { display: none; } }
+  .toplinks { display: flex; gap: 22px; font-size: 0.9em; }
+  .toplinks a { color: rgba(245,244,239,0.82); text-decoration: none; }
+  .toplinks a:hover { color: #fff; text-decoration: underline; }
+  @media (max-width: 480px) { .toplinks { gap: 12px; font-size: 0.82em; } .brand { font-size: 0.98em; } .toplinks .opt { display: none; } }
+
+  /* ---- hero ---- */
+  .hero {
+    position: relative;
+    background: var(--ocean-deep);
+    background-image: radial-gradient(ellipse 1000px 520px at 50% -10%, rgba(24,95,165,0.55), transparent 65%);
+    color: #F5F4EF;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+  .hero-inner { position: relative; z-index: 1; padding-top: 40px; text-align: center; }
+  .eyebrow { font-size: 0.78em; letter-spacing: 0.12em; text-transform: uppercase; color: #E3AE5E; font-weight: 600; }
+  .hero h1 { font-size: clamp(2.3em, 6vw, 3.6em); margin: 0.3em auto 0; line-height: 1.05; max-width: 15em; }
+  .hero p.lede { font-size: 1.15em; max-width: 34em; color: rgba(245,244,239,0.86); margin: 0.7em auto 0; }
+  .platforms { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid rgba(245,244,239,0.28); border-radius: 999px; font-size: 0.86em; color: rgba(245,244,239,0.9); }
+  .chip svg { width: 16px; height: 16px; fill: currentColor; }
+  .cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+  .btn { display: inline-block; padding: 11px 22px; border-radius: 8px; font-weight: 600; font-size: 0.95em; text-decoration: none; }
+  .btn.primary { background: #E3AE5E; color: #2A1A04; }
+  .btn.primary:hover { background: #EDBE75; }
+  .btn.ghost { color: #F5F4EF; border: 1px solid rgba(245,244,239,0.35); }
+  .btn.ghost:hover { border-color: #F5F4EF; }
+
+  /* app window frame around the big screenshot */
+  .window { margin: 44px auto 0; max-width: 1040px; border-radius: 12px 12px 0 0; overflow: hidden; background: #1B3A5C; box-shadow: 0 -10px 60px -20px rgba(0,0,0,0.6); border: 1px solid rgba(245,244,239,0.14); border-bottom: 0; }
+  .window .bar { height: 30px; display: flex; align-items: center; gap: 7px; padding: 0 12px; background: #0E2742; }
+  .window .bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(245,244,239,0.25); display: block; }
+  .window img { display: block; width: 100%; height: auto; }
+
+  /* ---- sections ---- */
+  section { padding: 72px 0; }
+  .section-head { max-width: 36em; margin-bottom: 40px; }
+  .section-head .eyebrow { color: var(--brass); }
+  .section-head h2 { font-size: 1.8em; margin-top: 0.35em; }
+  .section-head p { color: var(--ink2); margin-top: 0.5em; }
+
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding-top: 56px; }
+  @media (max-width: 820px) { .facts { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 440px) { .facts { grid-template-columns: 1fr; } }
+  .fact { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .fact strong { display: block; font-family: "Fraunces", serif; font-size: 1.08em; color: var(--ocean-deep); }
+  @media (prefers-color-scheme: dark) { .fact strong { color: #EAF1FA; } }
+  .fact span { display: block; color: var(--ink2); font-size: 0.92em; margin-top: 4px; }
+
+  .feature { display: grid; grid-template-columns: 5fr 7fr; gap: 40px; align-items: center; padding: 36px 0; }
+  .feature.flip { grid-template-columns: 7fr 5fr; }
+  .feature.flip .text { order: 2; }
+  @media (max-width: 820px) { .feature, .feature.flip { grid-template-columns: 1fr; gap: 20px; } .feature.flip .text { order: 0; } }
+  .feature h3 { font-size: 1.4em; color: var(--ocean-deep); }
+  @media (prefers-color-scheme: dark) { .feature h3 { color: #EAF1FA; } }
+  .feature p { color: var(--ink2); margin: 0.6em 0 0; }
+  .feature ul { color: var(--ink2); margin: 0.8em 0 0; padding-left: 1.15em; font-size: 0.97em; }
+  .feature li { margin-bottom: 4px; }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 18px 44px -18px rgba(4,44,83,0.4); }
+  @media (prefers-color-scheme: dark) { .shot img { box-shadow: 0 18px 44px -18px rgba(0,0,0,0.7); } }
+
+  .log { border-top: 1px solid var(--border); }
+  .entry { display: grid; grid-template-columns: 30% 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .entry h3 { font-size: 1.12em; color: var(--ocean-deep); }
+  @media (prefers-color-scheme: dark) { .entry h3 { color: #EAF1FA; } }
+  .entry p { color: var(--ink2); margin: 0; font-size: 0.97em; }
+  @media (max-width: 620px) { .entry { grid-template-columns: 1fr; gap: 6px; } }
+
+  .who { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .who { grid-template-columns: 1fr; } }
+  .who div { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; }
+  .who h3 { font-size: 1.05em; }
+  .who p { color: var(--ink2); margin: 0.4em 0 0; font-size: 0.95em; }
+
+  .privacy-card { background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--kelp); border-radius: 6px; padding: 28px 30px; display: flex; gap: 20px; align-items: flex-start; }
+  .privacy-card .mark { color: var(--kelp); font-size: 1.5em; line-height: 1; margin-top: 2px; }
+  .privacy-card h3 { font-size: 1.1em; }
+  .privacy-card p { color: var(--ink2); margin: 0.5em 0 0; font-size: 0.97em; }
+
+  .dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .dl { grid-template-columns: 1fr; } }
+  .dl > div { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 6px; }
+  .dl svg { width: 28px; height: 28px; fill: var(--ocean-deep); }
+  @media (prefers-color-scheme: dark) { .dl svg { fill: #EAF1FA; } }
+  .dl h3 { font-size: 1.12em; margin-top: 6px; }
+  .dl p { color: var(--ink2); margin: 0; font-size: 0.92em; }
+  .dl .soon { margin-top: 12px; align-self: flex-start; padding: 6px 12px; border-radius: 999px; font-size: 0.82em; font-weight: 600; color: var(--brass); border: 1px solid var(--brass); }
+  .req { margin-top: 28px; color: var(--ink2); font-size: 0.93em; }
+  .req strong { color: var(--ink); }
+
+  footer { border-top: 1px solid var(--border); padding: 36px 0 48px; font-size: 0.9em; color: var(--ink2); }
+  .foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot-links a { color: var(--ink2); text-decoration: none; }
+  .foot-links a:hover { color: var(--ocean-mid); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1, .hero p.lede, .window { animation: rise 0.6s ease-out backwards; }
+    .hero p.lede { animation-delay: 0.08s; }
+    .window { animation-delay: 0.16s; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-win" viewBox="0 0 24 24"><path d="M2 4.6 10.2 3.5v7.9H2V4.6Zm9.2-1.2L22 2v9.4H11.2V3.4ZM2 12.6h8.2v7.9L2 19.4v-6.8Zm9.2 0H22V22l-10.8-1.5v-7.9Z"/></symbol>
+  <symbol id="i-mac" viewBox="0 0 24 24"><path d="M16.4 12.7c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-4.2ZM13.9 5.1c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4Z"/></symbol>
+  <symbol id="i-linux" viewBox="0 0 24 24"><path d="M12 2c-2.2 0-3.6 1.8-3.6 4.4 0 1.2.2 2 .1 2.9-.2 1.3-1.6 2.6-2.4 4.2-.9 1.8-1.4 3.6-.6 4.6-.6.3-1.5.6-1.4 1.4.1.9 1.6.9 2.7 1.3 1.2.4 2 1 2.9.8.7-.2 1-.7 1.1-1.2h2.4c.1.5.5 1 1.1 1.2.9.2 1.7-.4 2.9-.8 1.1-.4 2.6-.4 2.7-1.3.1-.8-.8-1.1-1.4-1.4.8-1 .3-2.8-.6-4.6-.8-1.6-2.2-2.9-2.4-4.2-.1-.9.1-1.7.1-2.9C15.6 3.8 14.2 2 12 2Zm-1.6 4c.4 0 .7.5.7 1.1 0 .3-.1.5-.2.7l-.6-.2c.1-.1.1-.3.1-.5 0-.3-.1-.5-.2-.5s-.2.2-.2.5v.2l-.5-.2v-.1c.1-.6.4-1 .9-1Zm3.1 0c.5 0 .9.5.9 1.1v.3l-.6.1V7.2c0-.3-.1-.6-.3-.6-.2 0-.3.3-.3.6v.3l-.6.1c-.1-.2-.1-.4-.1-.6 0-.6.4-1 1-1Zm-1.6 2.3c.7 0 1.6.5 1.6.8 0 .4-1 1.1-1.6 1.1-.6 0-1.6-.7-1.6-1.1 0-.3.9-.8 1.6-.8Z"/></symbol>
+</svg>
+
+<div class="hero">
+  <div class="backbar"><a href="../../">← Freeboard</a> · <a href="../">Days in Dock for iPhone and Android</a></div>
+  <div class="topbar">
+    <div class="brand"><img src="../icon.png" alt="" width="30" height="30">Days in Dock <span class="ed">Desktop Version</span></div>
+    <nav class="toplinks">
+      <a href="#features" class="opt">Features</a>
+      <a href="#download">Download</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html" class="opt">Privacy</a>
+    </nav>
+  </div>
+  <div class="wide hero-inner">
+    <div class="eyebrow">For shipyard periods and refits</div>
+    <h1>Every job in the yard, on one chart.</h1>
+    <p class="lede">Days in Dock Desktop Version is the job tracker and Gantt chart for the people who run a refit: every job with its people, dates, notes, photos, quotes and e-mails, on your own computer — and a clean PDF report whenever someone asks where things stand.</p>
+    <div class="platforms" aria-label="Platforms">
+      <span class="chip"><svg aria-hidden="true"><use href="#i-win"/></svg>Windows</span>
+      <span class="chip"><svg aria-hidden="true"><use href="#i-mac"/></svg>macOS</span>
+      <span class="chip"><svg aria-hidden="true"><use href="#i-linux"/></svg>Linux</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#download">Get the desktop version</a>
+      <a class="btn ghost" href="#features">See what it does</a>
+    </div>
+    <div class="window">
+      <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <img src="shots/gantt.webp" alt="Days in Dock Desktop Version Gantt chart: a refit project with sixty jobs, coloured phases, paused periods, links between jobs and a line for today" width="1600" height="1000">
+    </div>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="facts">
+    <div class="fact"><strong>No internet needed</strong><span>Runs entirely on your computer. Nothing goes to us or to the internet.</span></div>
+    <div class="fact"><strong>Your data, your disk</strong><span>Jobs, files and backups live in one folder you control.</span></div>
+    <div class="fact"><strong>Built for the yard</strong><span>Phases, pauses, contractors, categories and links between jobs.</span></div>
+    <div class="fact"><strong>No ads, no tracking</strong><span>No analytics, no telemetry, no AI.</span></div>
+  </div>
+</div>
+
+<div class="wide" id="features">
+  <section aria-labelledby="what-heading" style="padding-bottom:24px">
+    <div class="section-head">
+      <div class="eyebrow">What it does</div>
+      <h2 id="what-heading">The whole yard period, in one place</h2>
+      <p>From the first work list to the last sign-off: plan it, follow it day by day, and report on it.</p>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <h3>A Gantt you can drag</h3>
+        <p>Day, week or month view with a line for today. Each job shows its phases — planning, quoting, prepping, executing, clearing — its pauses and its finish milestone.</p>
+        <ul>
+          <li>Drag a bar to move a job, drag an edge to change its dates, undo with Ctrl+Z</li>
+          <li>Link a job to the one it waits for, with lag days; clashes turn red</li>
+          <li>Move a job and the app offers to move the jobs that depend on it — never without asking</li>
+          <li>A backlog for jobs without dates: drag them onto the chart</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="shots/gantt-detail.webp" alt="Close-up of the Gantt: phases, paused periods and arrows between linked jobs" loading="lazy" width="1600" height="1000"></div>
+    </div>
+
+    <div class="feature flip">
+      <div class="text">
+        <h3>Notes, photos and files on every job</h3>
+        <p>A dated log for each job, with who wrote what and when. Drop photos, PDFs, quotes and e-mails on a note and they're filed with it, named after the job so they stay findable.</p>
+        <ul>
+          <li>Photos and PDFs preview in the app; saved e-mails (.eml) show sender, date, text and attachments</li>
+          <li>One document can be linked to several jobs without copies</li>
+          <li>A full history of every change: who, when, old and new value</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="shots/notes.webp" alt="A job's notes: dated entries with their author and attached photos and reports" loading="lazy" width="1600" height="1000"></div>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <h3>Reports that answer "where are we?"</h3>
+        <p>One click makes a PDF of the jobs you filtered: the Gantt first, then every job on its own page with its details and its notes day by day.</p>
+        <ul>
+          <li>Attached photos are printed under their note, and attached PDFs are inserted right there</li>
+          <li>Page numbers on every page, A3 or A4</li>
+          <li>Export the Gantt to PDF, and the job list to Excel or PDF</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="shots/report.webp" alt="The Report dialog over the Gantt chart, with the option to include attached files" loading="lazy" width="1600" height="1000"></div>
+    </div>
+
+    <div class="feature flip">
+      <div class="text">
+        <h3>Find any job in seconds</h3>
+        <p>A sortable job list with the same filters as the Gantt: text (titles, notes and document names), status, category, person or company, and dates. Filters are remembered for each user.</p>
+        <ul>
+          <li>Categories as a tree: Engine room › Main engine › Cylinder heads</li>
+          <li>Contractors, shipyard contact, participants, responsible, priority and costs</li>
+          <li>Import a job list from Excel, with a preview before anything is saved</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="shots/list.webp" alt="The job list with status, categories, contractors, contacts, dates and links" loading="lazy" width="1600" height="1000"></div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section aria-labelledby="more-heading">
+    <div class="section-head">
+      <div class="eyebrow">And also</div>
+      <h2 id="more-heading">Made for how a yard period really runs</h2>
+    </div>
+    <div class="log">
+      <div class="entry">
+        <h3>Several projects</h3>
+        <p>One project per boat or per yard period, each with its own job numbers and category tree. Carry the unfinished jobs over to the next period; archive finished projects as a read-only record.</p>
+      </div>
+      <div class="entry">
+        <h3>Photos from your phone</h3>
+        <p>Turn on phone access and pair a phone with a QR code. On deck, open the job, take photos and they're attached to the note, straight into the computer — over your own Wi-Fi, encrypted, in the phone's web browser — no app needed.</p>
+      </div>
+      <div class="entry">
+        <h3>A team on one computer</h3>
+        <p>Each person signs in with their own name, so every change is recorded with who made it. Admins manage users, settings and backups; members do everything else.</p>
+      </div>
+      <div class="entry">
+        <h3>Backups you can roll back</h3>
+        <p>Backups are made by themselves at start, at exit and daily, whenever something changed. The app keeps every backup of the last 7 days, then one per week for 4 weeks and one per month for 4 months. Restore any of them — the current state is saved first, so a restore can be undone too. Export everything to one file for a USB stick.</p>
+      </div>
+      <div class="entry">
+        <h3>Also on your phone</h3>
+        <p><a href="../">Days in Dock for iPhone and Android</a> is a separate app that keeps its own projects on the phone. It doesn't sync with the desktop version: each keeps its own data.</p>
+      </div>
+      <div class="entry">
+        <h3>Careful with files</h3>
+        <p>Programs and scripts that arrive attached to a job are kept but never opened by the app, and large files and a nearly full disk are caught before they cause trouble.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="who-heading" style="padding-top:0">
+    <div class="section-head">
+      <div class="eyebrow">Who it's for</div>
+      <h2 id="who-heading">For whoever holds the job list</h2>
+    </div>
+  </section>
+</div>
+<div class="wide" style="margin-top:-56px">
+  <div class="who">
+    <div>
+      <h3>Chief engineers and captains</h3>
+      <p>Keep the yard period under control, show the owner a report instead of a long phone call, and hand over a complete record at the end.</p>
+    </div>
+    <div>
+      <h3>Project managers</h3>
+      <p>One project per boat or per period, with the same people, statuses and phases across all of them.</p>
+    </div>
+    <div>
+      <h3>Shipyards and contractors</h3>
+      <p>Plan the work, track what waits for what, and keep the photos and quotes with the job they belong to.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section aria-labelledby="privacy-heading">
+    <div class="section-head">
+      <div class="eyebrow">On board, not in the cloud</div>
+      <h2 id="privacy-heading">Your job list stays yours</h2>
+    </div>
+    <div class="privacy-card">
+      <div class="mark">◆</div>
+      <div>
+        <h3>No server, no cloud account, no tracking</h3>
+        <p>The desktop version has no server and makes no internet connections. Your jobs, notes, files and backups are stored in the app's folder on your computer, and leave it only when you copy, export or print them yourself. Phone access is off until you turn it on, and then works only inside your own network. <a href="privacy.html">Read the privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" aria-labelledby="dl-heading" style="padding-top:8px">
+    <div class="section-head">
+      <div class="eyebrow">Download</div>
+      <h2 id="dl-heading">Get Days in Dock Desktop Version</h2>
+      <p>The first downloads are being prepared. Download links will appear here at launch.</p>
+    </div>
+    <div class="dl">
+      <div>
+        <svg aria-hidden="true"><use href="#i-win"/></svg>
+        <h3>Windows</h3>
+        <p>Windows 10 and 11, 64-bit. A portable folder: nothing to install, no admin rights needed.</p>
+        <span class="soon">Coming soon</span>
+      </div>
+      <div>
+        <svg aria-hidden="true"><use href="#i-mac"/></svg>
+        <h3>macOS</h3>
+        <p>For Mac computers.</p>
+        <span class="soon">Coming soon</span>
+      </div>
+      <div>
+        <svg aria-hidden="true"><use href="#i-linux"/></svg>
+        <h3>Linux</h3>
+        <p>For 64-bit Linux desktops.</p>
+        <span class="soon">Coming soon</span>
+      </div>
+    </div>
+    <p class="req"><strong>Requirements:</strong> Google Chrome installed (the app opens in its own Chrome window), about 40 MB plus room for your documents and backups. Questions before launch? Write to <a href="mailto:support@freeboard.boats">support@freeboard.boats</a>.</p>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>© 2026 Ed Wain · Days in Dock Desktop Version, by Freeboard</div>
+    <div class="foot-links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="eula.html">EULA</a>
+      <a href="../">Days in Dock</a>
+      <a href="../../">Freeboard</a>
+      <a href="mailto:support@freeboard.boats">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

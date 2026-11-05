@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Help for Days in Dock Desktop Version, the job tracker and Gantt chart for shipyard periods: requirements, data, backups, phone access and contact.">
+<link rel="icon" href="../icon.png">
+<title>Support — Days in Dock Desktop Version</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean-deep: #042C53; --ocean-mid: #185FA5; --brass: #854F0B; --kelp: #085041;
+    --paper: #F5F4EF; --card: #FFFFFF; --ink: #1A1A18; --ink2: #6B6A65;
+    --border: rgba(4,44,83,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161614; --card: #1E1E1C; --ink: #F0EFE9; --ink2: #9B9A95;
+      --ocean-mid: #6FA8E0; --brass: #D99A3D; --kelp: #35C89B;
+      --border: rgba(240,239,233,0.14);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px; line-height: 1.65;
+  }
+  h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; text-wrap: balance; }
+  a { color: var(--ocean-mid); }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px 60px; }
+  nav.doc-nav {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    padding: 22px 0; margin-bottom: 20px; border-bottom: 1px solid var(--border);
+    font-size: 0.92em;
+  }
+  nav.doc-nav a { color: var(--ink2); text-decoration: none; }
+  nav.doc-nav a:hover, nav.doc-nav a.current { color: var(--ocean-mid); }
+  h1 { font-size: 1.7em; margin: 0 0 4px; }
+  .updated { color: var(--ink2); font-size: 0.9em; margin-bottom: 28px; }
+  ul { padding-left: 1.3em; }
+  li { margin-bottom: 6px; }
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.85em; color: var(--ink2); }
+  h2 { font-size: 1.15em; margin-top: 2em; }
+  .qa { margin-top: 0.9em; }
+  .qa strong { display: block; margin-bottom: 2px; }
+  .qa p { color: var(--ink2); margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="doc-nav">
+    <a href="../../">← Freeboard</a>
+    <a href="./">Desktop Version</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="support.html" class="current">Support</a>
+    <a href="eula.html">EULA</a>
+  </nav>
+
+  <h1>Support</h1>
+  <p>Days in Dock Desktop Version is a job tracker and Gantt chart for shipyard periods and refits. It runs on your own computer and works with no internet — everything stays in its folder unless you export, print or copy it.</p>
+
+  <h2>Need help?</h2>
+  <p>Email <a href="mailto:support@freeboard.boats">support@freeboard.boats</a> with questions, bug reports or ideas. If you're reporting a problem, please include your operating system, the app version (Lists &amp; settings → About) and, if you can, the log files from the app's <code>data/logs</code> folder. Have a look at them first: they can contain job titles and file names.</p>
+
+  <h2>Common questions</h2>
+  <div class="qa">
+    <strong>What do I need to run the desktop version?</strong>
+    <p>A 64-bit Windows 10 or 11 computer and Google Chrome. the app opens in its own Chrome window with a separate profile, so it doesn't touch your normal browsing. Versions for macOS and Linux are on the way.</p>
+  </div>
+  <div class="qa">
+    <strong>How do I install it?</strong>
+    <p>There is nothing to install. Copy the app's folder anywhere — your documents, a work drive or a USB stick — and double-click the program inside it. No admin rights are needed. To remove it, quit the app and delete the folder.</p>
+  </div>
+  <div class="qa">
+    <strong>Where is my data stored?</strong>
+    <p>In the app's folder only: the database in <code>data</code>, your files in <code>documents</code> and the backups in <code>backups</code>. There is no server.</p>
+  </div>
+  <div class="qa">
+    <strong>Can several people use it?</strong>
+    <p>Yes, on the same computer. Each person signs in with their own name, so every change is recorded with who made it; admins manage users, settings and backups. Phones on the same network can add notes and photos. The data lives on that one computer: the desktop version is not a shared network database.</p>
+  </div>
+  <div class="qa">
+    <strong>Does it sync with the Days in Dock phone app?</strong>
+    <p>No. <a href="../">Days in Dock for iPhone and Android</a> is a separate app that keeps its own projects on the phone, and the desktop version keeps its data on the computer. To add photos from a phone to the desktop version, use phone access (below).</p>
+  </div>
+  <div class="qa">
+    <strong>How do backups work, and how do I go back to an earlier version?</strong>
+    <p>A backup is made at start, at exit and once a day while the app is open, whenever something changed. The app keeps every backup of the last 7 days, then one per week for 4 weeks and one per month for 4 months. An admin can restore any of them in Lists &amp; settings → Backups &amp; files; the current state is backed up first, so a restore can be undone.</p>
+  </div>
+  <div class="qa">
+    <strong>How do I keep a copy somewhere else, or move to a new computer?</strong>
+    <p>Use Export full backup (Lists &amp; settings → Backups &amp; files) to save everything in one .zip, for example on a USB stick. To move to another computer, quit the app and copy the whole folder.</p>
+  </div>
+  <div class="qa">
+    <strong>How do I add photos from my phone?</strong>
+    <p>An admin turns on phone access in Lists &amp; settings → Phone. Show the QR code there and scan it with the phone's camera; the phone then opens the app in its web browser (no phone app is needed), over your own Wi-Fi. The first time, the phone page explains how to install the app's certificate so the connection is trusted. Phone access turns itself off after 12 hours without use (you can change that).</p>
+  </div>
+  <div class="qa">
+    <strong>Can I import my existing job list?</strong>
+    <p>Yes, from Excel. Import offers a template with the columns it understands; choose your file, check the preview row by row, and only then press Import.</p>
+  </div>
+  <div class="qa">
+    <strong>I forgot the admin password.</strong>
+    <p>Quit the app, open a Command Prompt in the app's folder and run the program with the <code>-reset-admin</code> option. It shows a temporary password; sign in with it and choose a new one.</p>
+  </div>
+  <div class="qa">
+    <strong>Windows says "Windows protected your PC".</strong>
+    <p>Windows shows this for programs that arrived by download or e-mail. Right-click the program → Properties, tick Unblock and press OK, then start it again.</p>
+  </div>
+  <div class="qa">
+    <strong>It says Google Chrome was not found.</strong>
+    <p>Install Google Chrome. If it is installed somewhere unusual, write its location in <code>data/config.ini</code> as <code>chrome_path=…</code> (an example file is included).</p>
+  </div>
+
+  <footer>Days in Dock Desktop Version, by Freeboard · © 2026 Ed Wain</footer>
+</div>
+</body>
+</html>
