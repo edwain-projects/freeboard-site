@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Yard — a job diary and Gantt chart for shipyard periods and refits. Jobs, notes, photos, links between jobs and PDF reports, all on your phone, working with no internet.">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<title>Yard</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yard">
+<meta property="og:description" content="A job diary and Gantt chart for shipyard periods and refits — on your phone, no internet needed.">
+<meta property="og:url" content="https://freeboard.boats/yard/">
+<meta property="og:image" content="https://freeboard.boats/yard/icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yard">
+<meta name="twitter:description" content="A job diary and Gantt chart for shipyard periods and refits — on your phone, no internet needed.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean-deep: #042C53;
+    --ocean-mid: #185FA5;
+    --brass: #854F0B;
+    --kelp: #085041;
+    --paper: #F5F4EF;
+    --paper2: #EDECEA;
+    --card: #FFFFFF;
+    --ink: #1A1A18;
+    --ink2: #6B6A65;
+    --border: rgba(4,44,83,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161614;
+      --paper2: #1E1E1C;
+      --card: #1E1E1C;
+      --ink: #F0EFE9;
+      --ink2: #9B9A95;
+      --ocean-mid: #6FA8E0;
+      --brass: #D99A3D;
+      --kelp: #35C89B;
+      --border: rgba(240,239,233,0.14);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-weight: 600; text-wrap: balance; margin: 0; }
+  a { color: var(--ocean-mid); }
+  a:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- top bar ---- */
+  .topbar { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 24px; max-width: 780px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: "Fraunces", serif; font-weight: 600; font-size: 1.05em; color: #F5F4EF; }
+  .brand img { width: 30px; height: 30px; border-radius: 7px; }
+  .toplinks { display: flex; gap: 22px; font-size: 0.9em; }
+  .toplinks a { color: rgba(245,244,239,0.82); text-decoration: none; }
+  .toplinks a:hover { color: #fff; text-decoration: underline; }
+  @media (max-width: 420px) { .toplinks { gap: 14px; } }
+
+  /* ---- hero ---- */
+  .hero {
+    position: relative;
+    background: var(--ocean-deep);
+    background-image: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(24,95,165,0.55), transparent 65%);
+    color: #F5F4EF;
+    padding-bottom: 64px;
+    overflow: hidden;
+  }
+  .hero-inner { position: relative; z-index: 1; padding-top: 48px; }
+  .eyebrow { font-size: 0.78em; letter-spacing: 0.12em; text-transform: uppercase; color: #E3AE5E; font-weight: 600; }
+  .hero h1 { font-size: clamp(2.4em, 6vw, 3.6em); margin-top: 0.3em; line-height: 1.05; }
+  .hero p.lede { font-size: 1.15em; max-width: 32em; color: rgba(245,244,239,0.86); margin-top: 0.6em; }
+  .soon { display: inline-block; margin-top: 22px; padding: 6px 14px; border: 1px solid rgba(245,244,239,0.3); border-radius: 999px; font-size: 0.85em; color: rgba(245,244,239,0.85); }
+
+  /* mini Gantt — the product's core idea, made visible */
+  .gantt-demo { margin-top: 40px; max-width: 520px; }
+  .gantt-demo .caption { font-size: 0.82em; color: rgba(245,244,239,0.7); margin-bottom: 10px; }
+  .g-row { position: relative; height: 30px; display: flex; align-items: center; border-bottom: 1px dashed rgba(245,244,239,0.1); }
+  .g-label { width: 112px; flex-shrink: 0; font-size: 0.78em; color: rgba(245,244,239,0.75); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 8px; }
+  .g-track { position: relative; flex: 1; height: 100%; }
+  .g-bar { position: absolute; top: 7px; height: 16px; border-radius: 4px; background: rgba(245,244,239,0.85); }
+  .g-bar.blue { background: #3E9BD6; }
+  .g-bar.gold { background: #C98A3E; }
+  .g-bar.done { background: rgba(245,244,239,0.3); }
+  .g-today { position: absolute; top: 0; bottom: 0; width: 2px; background: #FFC43D; left: 58%; }
+  .g-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; font-size: 0.82em; color: rgba(245,244,239,0.75); }
+  .g-legend .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+
+  /* ---- screenshot gallery ---- */
+  .shots { display: flex; align-items: flex-start; gap: 20px; overflow-x: auto; padding: 36px 24px 8px; scroll-snap-type: x proximity; scroll-padding-inline: 24px; -webkit-overflow-scrolling: touch; }
+  .shots::-webkit-scrollbar { display: none; }
+  .shot { flex: 0 0 auto; scroll-snap-align: start; width: 208px; }
+  @media (min-width: 760px) { .shots { justify-content: center; } .shot { width: 230px; } }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 16px 40px -16px rgba(4,44,83,0.35); }
+  @media (prefers-color-scheme: dark) { .shot img { box-shadow: 0 16px 40px -16px rgba(0,0,0,0.6); } }
+  .shot .cap { margin-top: 12px; font-size: 0.85em; color: var(--ink2); text-align: center; }
+
+  /* ---- sections ---- */
+  section { padding: 64px 0; }
+  .section-head { max-width: 34em; margin-bottom: 40px; }
+  .section-head .eyebrow { color: var(--brass); }
+  .section-head h2 { font-size: 1.8em; margin-top: 0.35em; }
+  .section-head p { color: var(--ink2); margin-top: 0.5em; }
+
+  .log { border-top: 1px solid var(--border); }
+  .entry { display: grid; grid-template-columns: 30% 1fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--border); }
+  .entry h3 { font-size: 1.15em; color: var(--ocean-deep); }
+  @media (prefers-color-scheme: dark) { .entry h3 { color: #EAF1FA; } }
+  .entry p { color: var(--ink2); margin: 0; font-size: 0.97em; }
+  @media (max-width: 620px) { .entry { grid-template-columns: 1fr; gap: 6px; } }
+
+  .who { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 620px) { .who { grid-template-columns: 1fr; } }
+  .who div { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; }
+  .who h3 { font-size: 1.05em; }
+  .who p { color: var(--ink2); margin: 0.4em 0 0; font-size: 0.95em; }
+
+  .privacy-card, .price-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 28px 30px; display: flex; gap: 20px; align-items: flex-start; }
+  .privacy-card { border-left: 4px solid var(--kelp); }
+  .price-card { border-left: 4px solid var(--brass); }
+  .privacy-card .mark { color: var(--kelp); font-size: 1.5em; line-height: 1; margin-top: 2px; }
+  .price-card .mark { color: var(--brass); font-size: 1.5em; line-height: 1; margin-top: 2px; }
+  .privacy-card h3, .price-card h3 { font-size: 1.1em; }
+  .privacy-card p, .price-card p { color: var(--ink2); margin: 0.5em 0 0; font-size: 0.97em; }
+
+  footer { border-top: 1px solid var(--border); padding: 36px 0 48px; font-size: 0.9em; color: var(--ink2); }
+  .foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot-links a { color: var(--ink2); text-decoration: none; }
+  .foot-links a:hover { color: var(--ocean-mid); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1, .hero p.lede, .gantt-demo { animation: rise 0.6s ease-out backwards; }
+    .hero p.lede { animation-delay: 0.08s; }
+    .gantt-demo { animation-delay: 0.16s; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="topbar">
+    <div class="brand"><img src="icon.png" alt="" width="30" height="30">Yard</div>
+    <nav class="toplinks">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="eula.html">EULA</a>
+    </nav>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">For refits and shipyard periods</div>
+    <h1>Every job in the yard,<br>day by day.</h1>
+    <p class="lede">A job diary and a Gantt chart in your pocket. Write down what happened today, attach the photos and the quotes, link the jobs that wait for each other — and send a clean PDF report when someone asks where things stand.</p>
+
+    <div class="gantt-demo" aria-hidden="true">
+      <div class="caption">Three jobs, one link, today's line</div>
+      <div class="g-row"><div class="g-label">Haul out</div><div class="g-track"><div class="g-bar done" style="left:0;width:14%"></div><div class="g-today"></div></div></div>
+      <div class="g-row"><div class="g-label">Blast &amp; prime hull</div><div class="g-track"><div class="g-bar" style="left:14%;width:34%"></div><div class="g-today"></div></div></div>
+      <div class="g-row"><div class="g-label">Antifouling</div><div class="g-track"><div class="g-bar blue" style="left:50%;width:22%"></div><div class="g-today"></div></div></div>
+      <div class="g-row"><div class="g-label">Teak recaulking</div><div class="g-track"><div class="g-bar gold" style="left:36%;width:60%"></div><div class="g-today"></div></div></div>
+      <div class="g-legend">
+        <span><span class="sw" style="background:rgba(245,244,239,0.85)"></span>in process</span>
+        <span><span class="sw" style="background:#3E9BD6"></span>waits for the hull</span>
+        <span><span class="sw" style="background:#FFC43D"></span>today</span>
+      </div>
+    </div>
+
+    <div class="soon">Coming soon to the App Store and Google Play</div>
+  </div>
+</div>
+
+<div class="shots" role="group" aria-label="App screenshots">
+  <div class="shot">
+    <img src="shots/diary.png" alt="Diary screen: the jobs touched today, then today's notes with the job they belong to" loading="lazy" width="640" height="1422">
+    <div class="cap">The diary for each day</div>
+  </div>
+  <div class="shot">
+    <img src="shots/gantt.png" alt="Gantt screen in week view: job bars, phases, arrows linking jobs, and a line for today" loading="lazy" width="640" height="1422">
+    <div class="cap">The Gantt, with links</div>
+  </div>
+  <div class="shot">
+    <img src="shots/job.png" alt="Job screen: title, status, areas, contractors, contacts, with tabs for schedule, notes and files" loading="lazy" width="640" height="1422">
+    <div class="cap">Everything about one job</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section aria-labelledby="what-heading">
+    <div class="section-head">
+      <div class="eyebrow">What it does</div>
+      <h2 id="what-heading">The yard period, written down as it happens</h2>
+      <p>Add a job in seconds on deck, fill in the details later at the desk.</p>
+    </div>
+    <div class="log">
+      <div class="entry">
+        <h3>Diary</h3>
+        <p>Pick a day and see what was written that day, the jobs under way, the ones past their end date and what is coming up. Swipe to the next day.</p>
+      </div>
+      <div class="entry">
+        <h3>Gantt and links</h3>
+        <p>Day, week or month view, with phases, pauses and milestones. Link a job to the one it waits for; if the dates clash the arrow turns red. Move a job and the app offers to move the jobs that depend on it.</p>
+      </div>
+      <div class="entry">
+        <h3>Notes, photos and files</h3>
+        <p>Take a photo, pick one from your library, or pick a file from iCloud Drive, Google Drive or OneDrive. On Android you can also share a quote straight from your mail into a job's note. Files are named after their job, so they stay findable.</p>
+      </div>
+      <div class="entry">
+        <h3>Several projects</h3>
+        <p>One project per boat or per yard period. Switch between them, archive the finished ones and bring them back whenever you need them.</p>
+      </div>
+      <div class="entry">
+        <h3>PDF reports</h3>
+        <p>The Gantt plus every job with its notes and attachments, made on the phone and sent by mail, AirDrop, WhatsApp or anything in the Share menu.</p>
+      </div>
+      <div class="entry">
+        <h3>Backups you can roll back</h3>
+        <p>Dated backups are made by themselves: every one of the last 7 days, then one per week for 4 weeks and one per month for 4 months. Restore any of them — the current state is saved first, so a restore can be undone too.</p>
+      </div>
+      <div class="entry">
+        <h3>Works with no signal</h3>
+        <p>Everything runs on the phone, in a dry dock, an engine room or mid-ocean. Lock it with Face ID or your fingerprint if the job list is nobody else's business.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="who-heading">
+    <div class="section-head">
+      <div class="eyebrow">Who it's for</div>
+      <h2 id="who-heading">For everyone with a job list in the yard</h2>
+    </div>
+    <div class="who">
+      <div>
+        <h3>Captains, engineers and project managers</h3>
+        <p>Keep the whole yard period in one place, switch between boats, and answer "where are we?" with a report instead of a phone call.</p>
+      </div>
+      <div>
+        <h3>Crew</h3>
+        <p>Keep a project for this yard period and start the next one before you arrive. Hand a project over as a single file when you leave.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="price-heading">
+    <div class="section-head">
+      <div class="eyebrow">Price</div>
+      <h2 id="price-heading">Try it for a month, then pay once</h2>
+    </div>
+    <div class="price-card">
+      <div class="mark">◆</div>
+      <div>
+        <h3>30 days free, then US$9.99 — no subscription</h3>
+        <p>The trial includes everything. After it, one payment unlocks the app for good on your Apple ID or Google account. If you don't unlock, nothing is deleted or hidden: you can still open your projects, make reports, export and back up.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="privacy-heading">
+    <div class="section-head">
+      <div class="eyebrow">On board, not in the cloud</div>
+      <h2 id="privacy-heading">Your job list stays yours</h2>
+    </div>
+    <div class="privacy-card">
+      <div class="mark">◆</div>
+      <div>
+        <h3>No account, no ads, no tracking</h3>
+        <p>Yard has no server and includes no analytics or advertising. Your jobs, notes and files are stored on your phone. Reports, exports and backups leave it only when you share them yourself. <a href="privacy.html">Read the privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>© 2026 Ed Wain · Yard, by Freeboard</div>
+    <div class="foot-links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="eula.html">EULA</a>
+      <a href="../">Freeboard</a>
+      <a href="mailto:support@freeboard.boats">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
