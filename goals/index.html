@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Goals — routines and one-time projects in categories you make, with the most neglected first. For iPhone and Android. No account, no ads, nothing leaves your phone.">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<title>Goals</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Goals">
+<meta property="og:description" content="Routines and one-time projects, most neglected first. For iPhone and Android — nothing leaves your phone.">
+<meta property="og:url" content="https://freeboard.boats/goals/">
+<meta property="og:image" content="https://freeboard.boats/goals/icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Goals">
+<meta name="twitter:description" content="Routines and one-time projects, most neglected first. For iPhone and Android — nothing leaves your phone.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0B1640;
+    --blue: #2A6FE8;
+    --teal: #0E9F8A;
+    --violet: #5B3DF5;
+    --red: #D7372B;
+    --orange: #C76A00;
+    --paper: #F5F4EF;
+    --card: #FFFFFF;
+    --ink: #1A1A18;
+    --ink2: #6B6A65;
+    --border: rgba(11,22,64,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161614;
+      --card: #1E1E1C;
+      --ink: #F0EFE9;
+      --ink2: #9B9A95;
+      --blue: #7FA9FF;
+      --teal: #3FD3BC;
+      --red: #FF6B5E;
+      --orange: #FFA640;
+      --border: rgba(240,239,233,0.14);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px; line-height: 1.6;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-weight: 600; text-wrap: balance; margin: 0; }
+  a { color: var(--blue); }
+  a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- hero ---- */
+  .hero {
+    position: relative; color: #F5F4EF; padding-bottom: 60px; overflow: hidden;
+    background: var(--night);
+    background-image:
+      radial-gradient(ellipse 700px 420px at 15% -10%, rgba(39,224,196,0.30), transparent 65%),
+      radial-gradient(ellipse 800px 520px at 95% 10%, rgba(91,61,245,0.45), transparent 65%),
+      radial-gradient(ellipse 900px 500px at 50% 120%, rgba(42,123,255,0.35), transparent 70%);
+  }
+  .backbar { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; padding: 14px 24px 0; font-size: 0.85em; }
+  .backbar a { color: rgba(245,244,239,0.72); text-decoration: none; }
+  .backbar a:hover { color: #fff; text-decoration: underline; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 10px 24px 22px; max-width: 780px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: "Fraunces", serif; font-weight: 600; font-size: 1.05em; }
+  .brand img { width: 30px; height: 30px; border-radius: 7px; }
+  .toplinks { display: flex; gap: 22px; font-size: 0.9em; }
+  .toplinks a { color: rgba(245,244,239,0.82); text-decoration: none; }
+  .toplinks a:hover { color: #fff; text-decoration: underline; }
+  .hero-inner { padding-top: 36px; }
+  .eyebrow { font-size: 0.78em; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: #6FE8D4; }
+  .hero h1 { font-size: clamp(2.3em, 6vw, 3.5em); margin-top: 0.3em; line-height: 1.06; }
+  .hero p.lede { font-size: 1.15em; max-width: 32em; color: rgba(245,244,239,0.86); margin-top: 0.6em; }
+  .platforms { margin-top: 1.2em; font-size: 0.92em; color: rgba(245,244,239,0.75); }
+
+  /* "most neglected first" — the app's core idea, made visible */
+  .demo { margin-top: 36px; max-width: 420px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; padding: 6px 18px; }
+  .demo-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; }
+  .demo-row + .demo-row { border-top: 1px solid rgba(255,255,255,0.10); }
+  .demo-row .inf { width: 26px; text-align: center; font-size: 1.35em; color: #8FB6FF; }
+  .demo-row .t { flex: 1; }
+  .demo-row .t b { display: block; font-weight: 600; }
+  .demo-row .t span { font-size: 0.88em; }
+  .r { color: #FF8A80; } .o { color: #FFB561; } .g { color: rgba(245,244,239,0.6); }
+  .demo-row .done { font-size: 0.82em; padding: 4px 12px; border-radius: 999px; background: rgba(255,255,255,0.14); color: #CFE0FF; }
+  .demo-cap { font-size: 0.82em; color: rgba(245,244,239,0.7); margin-top: 10px; }
+
+  /* ---- screenshots ---- */
+  .shots { display: flex; align-items: flex-start; gap: 20px; overflow-x: auto; padding: 36px 24px 8px; scroll-snap-type: x proximity; scroll-padding-inline: 24px; }
+  .shots::-webkit-scrollbar { display: none; }
+  .shot { flex: 0 0 auto; scroll-snap-align: start; width: 200px; }
+  @media (min-width: 900px) { .shots { justify-content: center; } }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 16px 40px -16px rgba(11,22,64,0.35); }
+  .shot .cap { margin-top: 12px; font-size: 0.85em; color: var(--ink2); text-align: center; }
+
+  /* ---- sections ---- */
+  section { padding: 60px 0; }
+  .section-head { max-width: 34em; margin-bottom: 36px; }
+  .section-head .eyebrow { color: var(--teal); }
+  .section-head h2 { font-size: 1.8em; margin-top: 0.35em; }
+  .section-head p { color: var(--ink2); margin-top: 0.5em; }
+  .log { border-top: 1px solid var(--border); }
+  .entry { display: grid; grid-template-columns: 30% 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .entry h3 { font-size: 1.12em; }
+  .entry p { color: var(--ink2); margin: 0; font-size: 0.97em; }
+  @media (max-width: 620px) { .entry { grid-template-columns: 1fr; gap: 6px; } }
+  .kinds { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 620px) { .kinds { grid-template-columns: 1fr; } }
+  .kind { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; }
+  .kind .sym { font-size: 1.7em; line-height: 1; color: var(--blue); }
+  .kind h3 { font-size: 1.1em; margin-top: 10px; }
+  .kind p { color: var(--ink2); font-size: 0.96em; margin: 0.4em 0 0; }
+  .privacy-card { background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--teal); border-radius: 6px; padding: 26px 28px; }
+  .privacy-card h3 { font-size: 1.1em; }
+  .privacy-card p { color: var(--ink2); margin: 0.5em 0 0; font-size: 0.97em; }
+  footer { border-top: 1px solid var(--border); padding: 36px 0 48px; font-size: 0.9em; color: var(--ink2); }
+  .foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot-links a { color: var(--ink2); text-decoration: none; }
+  .foot-links a:hover { color: var(--blue); }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1, .hero p.lede, .demo { animation: rise 0.6s ease-out backwards; }
+    .hero p.lede { animation-delay: 0.08s; } .demo { animation-delay: 0.16s; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="backbar"><a href="../">← Freeboard</a></div>
+  <div class="topbar">
+    <div class="brand"><img src="icon.png" alt="" width="30" height="30"> Goals</div>
+    <nav class="toplinks">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="eula.html">EULA</a>
+    </nav>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">For the things you keep meaning to do</div>
+    <h1>See what you've been<br>neglecting.</h1>
+    <p class="lede">Routines that never end and projects that do, in categories you make. Every item shows when you last worked on it, and the one you've left longest is always at the top.</p>
+    <p class="platforms">For iPhone and Android · coming soon to the App Store and Google Play</p>
+
+    <div class="demo" aria-label="Example list, most neglected first">
+      <div class="demo-row"><div class="inf" aria-hidden="true">∞</div><div class="t"><b>Call Mum</b><span class="r">Last: 16 days ago</span></div><div class="done">✓ Done</div></div>
+      <div class="demo-row"><div class="inf" aria-hidden="true">∞</div><div class="t"><b>Spanish lesson</b><span class="o">Last: 9 days ago</span></div><div class="done">✓ Done</div></div>
+      <div class="demo-row"><div class="inf" aria-hidden="true">∞</div><div class="t"><b>Read 30 pages</b><span class="g">Last: 2 days ago</span></div><div class="done">✓ Done</div></div>
+    </div>
+    <div class="demo-cap">Orange after a week, red after two — tap Done and it drops to the bottom.</div>
+  </div>
+</div>
+
+<div class="shots" role="group" aria-label="App screenshots">
+  <div class="shot">
+    <img src="shots/goals.webp" alt="iPhone: the Goals category with routines sorted by how long ago they were last done" loading="lazy" width="640" height="1391">
+    <div class="cap">Most neglected first</div>
+  </div>
+  <div class="shot">
+    <img src="shots/projects.webp" alt="iPhone: the Projects category with step counts and a finished project under Done" loading="lazy" width="640" height="1391">
+    <div class="cap">Projects with steps</div>
+  </div>
+  <div class="shot">
+    <img src="shots/item.webp" alt="iPhone: an item page with type, done switch, last-iterated date, category and notes" loading="lazy" width="640" height="1391">
+    <div class="cap">Every detail on one page</div>
+  </div>
+  <div class="shot">
+    <img src="shots/android-goals.webp" alt="Android: the same Goals list in the Android app" loading="lazy" width="640" height="1422">
+    <div class="cap">The same on Android</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section aria-labelledby="kinds-heading">
+    <div class="section-head">
+      <div class="eyebrow">One list, two kinds of things</div>
+      <h2 id="kinds-heading">Some things end. Some never do.</h2>
+    </div>
+    <div class="kinds">
+      <div class="kind">
+        <div class="sym" aria-hidden="true">∞</div>
+        <h3>Routines</h3>
+        <p>Calling family, practising a language, cleaning the filters. A routine never finishes: each time you do it, tap Done and the date is stamped.</p>
+      </div>
+      <div class="kind">
+        <div class="sym" aria-hidden="true">○</div>
+        <h3>One-time projects</h3>
+        <p>Renewing a passport, painting the balcony. Break it into steps, tick them off, and mark it done once every step is ticked.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="what-heading" style="padding-top:0">
+    <div class="section-head">
+      <div class="eyebrow">What's inside</div>
+      <h2 id="what-heading">Small, quick, and out of your way</h2>
+    </div>
+    <div class="log">
+      <div class="entry"><h3>Your own categories</h3><p>A ribbon across the top holds as many categories as you like — Goals, Projects, Home, Health. Long-press one to rename, move or delete it.</p></div>
+      <div class="entry"><h3>Last done, at a glance</h3><p>Ticking a step, finishing an item or tapping Done all count as working on it. Change the date by hand whenever you need to.</p></div>
+      <div class="entry"><h3>Steps you can reorder</h3><p>Edit a step right where it is, drag steps into a new order, delete the ones you no longer need.</p></div>
+      <div class="entry"><h3>Plain-text backup</h3><p>Export one category or everything as a Markdown (.md) file — readable in any text editor. Import it on another phone, iPhone or Android; it adds what's missing and never overwrites what's there.</p></div>
+      <div class="entry"><h3>Light and dark</h3><p>Follows your phone's appearance, on both platforms.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="privacy-heading" style="padding-top:0">
+    <div class="section-head">
+      <div class="eyebrow">Private by design</div>
+      <h2 id="privacy-heading">Your lists stay on your phone</h2>
+    </div>
+    <div class="privacy-card">
+      <h3>No account, no internet, no ads, no tracking</h3>
+      <p>Goals never connects to the internet and contains no analytics or advertising code. Everything you enter is stored on your phone only. An exported file goes only where you send it. Because there is no server, keep an export as your backup — deleting the app deletes its data. <a href="privacy.html">Privacy policy</a></p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>© 2026 Goals, by Freeboard</div>
+    <div class="foot-links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="eula.html">EULA</a>
+      <a href="../">Freeboard</a>
+      <a href="mailto:support@freeboard.boats">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
